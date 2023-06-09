@@ -1,0 +1,14 @@
+
+<div class="sidebar" [ngClass]="{'sidebar-closed': isSidebarClosed}">
+    <div class="sidebar-toggle" (click)="toggleSidebar()">
+      <span class="sidebar-toggle-icon"></span>
+    </div>
+    <div class="sidebar-content"> 
+      <button class="sidebar-button">Dashboard</button>
+      <button class="sidebar-button">Users</button>
+      <button class="sidebar-button">Products</button>
+      <button class="sidebar-button">Orders</button>
+    </div>
+  </div>
+  
+  

@@ -1,0 +1,180 @@
+.calendar-container 
+  font-family: Arial, sans-serif
+  max-width: 400px
+  margin: 0 auto
+
+
+.calendar-header 
+  display: flex
+  align-items: center
+  justify-content: space-between
+  margin-bottom: 10px
+
+
+.pagination-arrow 
+  background: none
+  border: none
+  cursor: pointer
+  font-size: 18px
+  color: #333
+  transition: color 0.3s
+  padding: 5px
+
+
+.pagination-arrow:hover 
+  color: #666
+  background-color: #f2f2f2
+  border-radius: 4px
+
+
+.pagination-arrow.previous::before 
+  content: "<"
+
+
+.pagination-arrow.next::before 
+  content: ">"
+
+
+.month-year 
+  font-size: 18px
+  font-weight: bold
+
+
+.calendar-table 
+  width: 100%
+  border-collapse: collapse
+
+
+.calendar-table th 
+  text-align: center
+  padding: 5px
+
+
+.calendar-table td 
+  text-align: center
+  padding: 10px
+  cursor: pointer
+  position: relative
+
+
+.calendar-table td.current-day 
+  background-color: lightblue
+  color: white
+  border-radius: 50%
+
+
+.calendar-table td.has-event 
+  position: relative
+
+
+.day-number 
+  font-size: 14px
+  font-weight: bold
+
+
+.event-indicator 
+  position: absolute
+  top: 5px
+  right: 5px
+  width: 6px
+  height: 6px
+  background-color: #ff4d4f
+  border-radius: 50%
+
+
+
+
+.tooltip 
+  position: absolute
+  top: calc(100% + 5px)
+  left: 50%
+  transform: translateX(-50%)
+  z-index: 100
+  background-color: #f2f2f2
+  padding: 5px
+  border: 1px solid #ccc
+  border-radius: 4px
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15)
+  font-size: 14px
+  display: none
+  white-space: nowrap
+
+
+.tooltip.show 
+  display: block
+
+
+.tooltip-date 
+  font-weight: bold
+  margin-bottom: 5px
+
+
+.tooltip-events 
+  margin-bottom: 5px
+
+
+.tooltip-event 
+  margin-bottom: 3px
+
+
+.upcoming-events 
+  display: flex
+  // flex-wrap: wrap
+  margin-top: 10px
+  border-top: 1px solid #ccc
+  padding-top: 10px
+
+
+.upcoming-events-title 
+  font-weight: bold
+  margin-bottom: 5px
+
+.calendar-table td:hover 
+  background-color: #f2f2f2
+
+
+.upcoming-events 
+  margin-top: 10px
+
+
+.upcoming-events-title 
+  font-weight: bold
+  margin-bottom: 5px
+
+
+.upcoming-event-row 
+  display: flex
+
+
+.upcoming-event 
+  margin-right: 10px
+
+
+.event-box 
+  padding: 5px
+  margin-right: 10px
+  border-radius: 5px
+  background-color: #099dfd
+  color: white
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  max-width: 80px
+  height: 60px
+  overflow: hidden
+  text-align: center
+  white-space: nowrap
+  text-overflow: ellipsis
+
+
+.event-date 
+  font-size: 10px
+
+
+.event-name 
+  font-size: 12px
+
+
+
+

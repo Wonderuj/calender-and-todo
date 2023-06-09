@@ -1,0 +1,407 @@
+<div class="container bg-light">
+  <div class="row">
+    <!-- column 1 -->
+    <div class="col-4">
+      <div class="row">
+        <div class="col-12 p-30 mb-30">
+          <div class="card bg-light w-100">
+            <div class="card-body">
+              <div class="card-title">
+                <h3 class="card-title">Profile</h3>
+              </div>
+              <div class="card-text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Veniam, nihil.
+              </div>
+            </div>
+            <div class="card-footer">is this a footer?</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 p-30 mb-30">
+          <div class="card bg-light w-100">
+            <div class="card-body">
+              <div class="card-title">
+                <h3 class="card-title">Second block of first column</h3>
+              </div>
+              <!-- rows in columns -->
+              <div class="row p-30">
+                <div class="col-sm-12">
+                  <div class="card bg-light w-100">
+                    <div class="card-body">
+                      <div class="card-title">
+                        <h3 class="card-title">Calander</h3>
+                      </div>
+                      
+                      <div class="card-text">
+                        <app-calenderui></app-calenderui>
+                      </div>
+                    </div>
+                    <div class="card-footer">is this a footer?</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row p-30">
+                <div class="col-sm-12">
+                  <div class="card bg-light w-100">
+                    <div class="card-body">
+                      <div class="card-title">
+                        <h3 class="card-title">Birthday/Work-Anniversary</h3>
+                      </div>
+                      <div class="card-text">you are second</div>
+                    </div>
+                    <div class="card-footer">is this a footer?</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row p-30">
+                <div class="col-sm-12">
+                  <div class="card bg-light w-100">
+                    <div class="card-body">
+                      <div class="card-title">
+                        <h3 class="card-title">Feedback/queries</h3>
+                      </div>
+                      <div class="card-text">
+                        <app-query-feed></app-query-feed>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- column 2 -->
+    <div class="col-4">
+      <!-- row 1 -->
+      <div class="row">
+        <div class="col-12 mb-30 p-30">
+          <div class="card bg-light w-100">
+            <div class="card-body">
+              <div class="card-title">
+                <h3 class="card-title" style="color: black;font-size: large;margin-bottom: 0;">Time Sheet</h3>
+              </div>
+              <div class="card-text">
+                <div class="row row-col-2 p-2">
+                  <div class="col-6">
+                    <div class="row">
+                      {{ dateVal | date: 'MMM dd, YYYY EEEE'}}
+                    </div>
+                    <div class="row">
+                      {{ dateVal | date: 'hh:mm': 'IST' }}
+                    </div>
+                  </div>
+                  <div class="col-6  d-flex justify-content-between" style="align-items: baseline;">
+                    <button class="btn btn-primary btn-sm small-button" style="margin-left: 2px;">Clock In</button>
+                    <button class="btn btn-secondary btn-sm small-button" style="margin-right: 1.3rem">Clock
+                      Out</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- -------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+      <!-- row 2 -->
+      <div class="row">
+        <div class="col-12 mb-30 p-30">
+          <div class="card bg-light w-100">
+            <div class="card-body">
+              <div class="card-title">
+                <h3 class="card-title">Leave</h3>
+              </div>
+              <div class="card-text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Veniam, nihil.
+              </div>
+            </div>
+            <div class="card-footer">is this a footer?</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- row 3 -->
+      <div class="row">
+        <div class="col-12 mb-30 p-30">
+          <div class="card bg-light w-100">
+            <div class="card-body">
+              <div class="card-title">
+                <h3 class="card-title">Todo List</h3>
+              </div>
+              <div class="card-text">Create your task</div>
+            </div>
+
+            <div class="card-body w-100">
+
+              <form [formGroup]="todoDynamic">
+                <div formArrayName="todo">
+                  <div *ngFor="let control of todo.controls; let i = index">
+                    <div [formGroupName]="i">
+                      <div class="card text-dark bg-light w-100" *ngIf="!control.get('cardReady').value">
+                        <div class="card-body">
+                          <div class="card-title">
+                            <input type="text" class="form-control" formControlName="todoHead" placeholder="Title">
+                          </div>
+                          <div class="card-text">
+                            <input type="text" class="form-control" formControlName="description"
+                              placeholder="Description" (keydown.enter)="handleAddButtonClick($event, control)">
+                          </div>
+                          <div class="card-footer">
+                            <button type="button" class="btn btn-dark w-100"
+                              (click)="setCardReady(control)">Add</button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="card text-dark bg-light w-100" *ngIf="control.get('cardReady').value">
+                        <div class="card-body">
+                          <h3 class="card-title" style="color: black;font-size: large;margin-bottom: 0;">
+                            {{ control.get('todoHead').value}}
+                          </h3>
+
+                          <div class="row row-cols-2" style="align-items: baseline;">
+                            <div class="col-11">
+                              <p class="card-text" style="font-size: 1.1rem;">{{ control.get('description').value }}</p>
+                            </div>
+                            <div class="col-1" style='padding: 0'>
+                              <button mat-icon-button [matMenuTriggerFor]="menu"
+                                aria-label="Example icon-button with a menu" style="display: inline-block;">
+                                <mat-icon>more_vert</mat-icon>
+                              </button>
+                              <mat-menu #menu="matMenu">
+                                <button mat-menu-item (click)="onClick1(i)">
+
+                                  <span>Save Progress</span>
+                                </button>
+                                <button mat-menu-item (click)="onClick2(i)">
+                                  <span>Update Progress</span>
+                                </button>
+                                <button mat-menu-item (click)="removeTodo(i)">
+                                  <span>Task Done</span>
+                                </button>
+                              </mat-menu>
+
+                            </div>
+                          </div>
+
+
+
+                          <mat-expansion-panel hideToggle style="background-color: #f5f5f5; display: initial;">
+                            <mat-expansion-panel-header>
+                              <mat-panel-title>
+                                {{ control.get('date').value }}
+                              </mat-panel-title>
+                              <mat-panel-description style="margin:0">
+                                <mat-progress-bar mode="determinate"
+                                  [value]="control.get('progress').value"></mat-progress-bar>
+                              </mat-panel-description>
+                            </mat-expansion-panel-header>
+
+                            <div class="row row-cols-2" style="align-items: baseline;">
+
+                              <div class="col-8">
+                                Did you progressed? Update it.
+                              </div>
+                              <div class="col-4">
+                                <input type="number" class="form-control" formControlName="progress"
+                                  placeholder="Progress" min="0" max="100" style="line-height: 0; width: auto;"
+                                  #progressInput>
+                              </div>
+
+                            </div>
+                          </mat-expansion-panel>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <div class="card-text">
+                <button type="button" class="btn btn-primary w-100" (click)="addTask()">
+                  add new
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- row 4 -->
+      <div class="row">
+        <div class="col-12 mb-30 p-30">
+          <div class="card bg-light w-100">
+            <div class="card-body">
+              <div class="card-title">
+                <h3 class="card-title">My Assets</h3>
+              </div>
+              <div class="card-text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Veniam, nihil.
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="card bg-light w-100">
+                  <div class="card-body">
+                    <div class="card-title">
+                      <h3 class="card-title">here it is</h3>
+                    </div>
+                    <div class="card-text">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Rerum, optio?
+                    </div>
+                  </div>
+                  <div class="card-footer">is this a footer?</div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="card bg-light w-100">
+                  <div class="card-body">
+                    <div class="card-title">
+                      <h3 class="card-title">here it is</h3>
+                    </div>
+                    <div class="card-text">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Rerum, optio?
+                    </div>
+                  </div>
+                  <div class="card-footer">is this a footer?</div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="card bg-light w-100">
+                  <div class="card-body">
+                    <div class="card-title">
+                      <h3 class="card-title">here it is</h3>
+                    </div>
+                    <div class="card-text">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Rerum, optio?
+                    </div>
+                  </div>
+                  <div class="card-footer">is this a footer?</div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="card bg-light w-100">
+                  <div class="card-body">
+                    <div class="card-title">
+                      <h3 class="card-title">here it is</h3>
+                    </div>
+                    <div class="card-text">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Rerum, optio?
+                    </div>
+                  </div>
+                  <div class="card-footer">is this a footer?</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- column 3 -->
+    <div class="col-4">
+      <div class="row">
+        <div class="col-12 mb-30 p-30">
+          <div class="card bg-light w-100">
+            <div class="card-body">
+              <div class="card-title">
+                <h3 class="card-title">Make a Post</h3>
+              </div>
+              <div class="card-text">
+                <textarea [(ngModel)]="postContent" class="form-control" rows="3"
+                  placeholder="Write your post here..."></textarea>
+                <button (click)="createPost()" class="btn btn-primary mt-3">Post</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div *ngFor="let post of posts" class="row">
+          <div class="col-12 mb-30 p-30">
+            <div class="card bg-light w-100">
+              <div class="card-body">
+                <div class="card-text">
+                  {{ post.content }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- row 2 -->
+      <div class="row">
+        <div class="col-12 mb-30 p-30">
+          <div class="card bg-light w-100">
+            <div class="card-body">
+              <div class="card-title">
+                <h3 class="card-title">Some post</h3>
+              </div>
+              <div class="card-text">Image and text</div>
+            </div>
+            <div class="card-footer">is this a footer?</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- row 3 -->
+      <div class="row">
+        <div class="col-12 mb-30 p-30">
+          <div class="card bg-light w-100">
+            <div class="card-body">
+              <div class="card-title">
+                <h3 class="card-title">Announcements</h3>
+              </div>
+              <div class="card-text">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Commodi aspernatur dolorum repudiandae, beatae pariatur eum
+                libero aperiam nobis excepturi! Placeat est nulla ratione
+                ducimus, praesentium, officiis nobis eos incidunt commodi itaque
+                dolorem, facilis tempore numquam beatae quae eaque voluptatum
+                consequatur voluptate iure! Officiis accusantium ipsam inventore
+                consequuntur optio laborum perspiciatis.
+              </div>
+            </div>
+            <div class="card-footer">is this a footer?</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- row 4 -->
+      <div class="row">
+        <div class="col-12 mb-30 p-30">
+          <div class="card bg-light w-100">
+            <div class="card-body">
+              <div class="card-title">
+                <h3 class="card-title">Extra</h3>
+              </div>
+              <div class="card-text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Veniam, nihil.
+              </div>
+            </div>
+            <div class="card-footer">is this a footer?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

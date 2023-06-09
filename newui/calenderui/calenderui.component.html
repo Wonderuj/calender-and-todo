@@ -1,0 +1,57 @@
+<div class="calendar-container">
+  <div class="calendar-header">
+    <button class="pagination-arrow prev-btn" (click)="navigateToPreviousMonth()">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <div class="month-year">{{ getMonthName(currentMonth) }} {{ currentYear }}</div>
+    <button class="pagination-arrow next-btn" (click)="navigateToNextMonth()">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+
+  <table class="calendar-table">
+    <thead>
+      <tr>
+        <th *ngFor="let dayName of dayNames">{{ dayName }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let week of calendar">
+        <td
+          *ngFor="let day of week"
+          [class.current-day]="isCurrentDay(day)"
+          [class.has-event]="hasEvent(day)"
+          (mouseover)="onMouseOver(day)"
+          (mouseout)="onMouseOut(day)"
+        >
+          <div class="day-container">
+            <div class="day-number">{{ day.date?.getDate() }}</div>
+            <div class="event-indicator" *ngIf="hasEvent(day)"></div>
+          </div>
+          <div class="tooltip" [class.show]="day.isHovered">
+            <div class="tooltip-content">
+              <div class="tooltip-date">{{ day.date | date: 'longDate' }}</div>
+              <div *ngIf="day.events.length > 0" class="tooltip-events">
+                <div *ngFor="let event of day.events" class="tooltip-event">
+                  {{ event.name }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="upcoming-events">
+    <div class="upcoming-events-title">Upcoming Events:</div>
+    <div class="upcoming-event-row">
+      <div *ngFor="let event of upcomingEvents" class="upcoming-event">
+        <div class="event-box">
+          <div class="event-date">{{ event.date | date: 'mediumDate' }}</div>
+          <div class="event-name">{{ event.name }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

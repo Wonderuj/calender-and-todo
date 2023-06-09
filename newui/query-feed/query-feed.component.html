@@ -1,0 +1,53 @@
+<mat-tab-group>
+  <mat-tab label="Query">
+    <div class="card">
+      <div class="card-body">
+        <h3>Query</h3>
+        <form [formGroup]="queryForm" (ngSubmit)="onQuerySubmit()">
+          <div class="form-group">
+            <!-- <label for="query">Query:</label> -->
+            <input type="text" class="form-control" id="query" formControlName="query">
+          </div>
+          <!-- <div class="card-footer"> -->
+            <button type="submit" class="btn btn-primary m-2">Send</button>
+            <button type="button" class="btn btn-outline-primary" (click)="queryForm.reset()">Cancel</button>
+          <!-- </div> -->
+        </form>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Feedback">
+    <div class="card">
+      <div class="card-body" style="box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.08);
+border-radius: 25px;">
+        <h3>Feedback</h3>
+        <form [formGroup]="feedbackForm" (ngSubmit)="onFeedbackSubmit()">
+          <div class="form-group">
+            <textarea class="form-control p-2" id="feedback" formControlName="feedback" row="3" style="border: 0.2px solid rgba(0, 0, 0, 0.5); border-radius: 15px; box-sizing: border-box;"></textarea>
+          </div>
+          <!-- <div class="card-footer"> -->
+            <button type="submit" class="btn btn-primary m-2">Send</button>
+            <button type="button" class="btn btn-secondary" (click)="feedbackForm.reset()">Cancel</button>
+          <!-- </div> -->
+        </form>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Suggestions">
+    <div class="card">
+      <div class="card-body">
+        <h3>Suggestions</h3>
+        <form [formGroup]="suggestionForm" (ngSubmit)="onSuggestionSubmit()">
+          <div class="form-group">
+            <!-- <label for="suggestion">Suggestions:</label> -->
+            <input type="text" class="form-control" id="suggestion" formControlName="suggestion">
+          </div>
+          <!-- <div class="card-footer"> -->
+            <button type="submit" class="btn btn-primary m-2">Send</button>
+            <button type="button" class="btn btn-secondary" (click)="suggestionForm.reset()">Cancel</button>
+          <!-- </div> -->
+        </form>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
